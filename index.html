@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meepity Games</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fdf6ec;
+      --header-bg: #ff6b6b;
+      --header-accent: #ff9f43;
+      --card-bg: #ffffff;
+      --card-border: #ffe0b2;
+      --card-hover: #fff8f0;
+      --card-shadow: #f4a26120;
+      --text: #3d2c1e;
+      --muted: #9e7e66;
+      --accent1: #ff6b6b;
+      --accent2: #48dbfb;
+      --accent3: #1dd1a1;
+      --star: #ffc312;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(circle at 15% 20%, #ffe29a44 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, #ff6b6b22 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, #48dbfb18 0%, transparent 60%);
+      min-height: 100vh;
+      color: var(--text);
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--header-bg);
+      background-image: linear-gradient(135deg, #ff6b6b 0%, #ff9f43 100%);
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px #ff6b6b44;
+    }
+
+    header::before, header::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.15;
+      background: white;
+    }
+    header::before { width: 220px; height: 220px; top: -80px; left: -60px; }
+    header::after  { width: 160px; height: 160px; bottom: -70px; right: -40px; }
+
+    .logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2.4rem, 8vw, 4rem);
+      color: #fff;
+      letter-spacing: 0.02em;
+      text-shadow: 3px 4px 0 #c0392b55;
+      position: relative;
+      display: inline-block;
+    }
+
+    .logo .meep { color: #fff; }
+    .logo .ity  { color: #ffe082; }
+
+    .tagline {
+      margin-top: 0.4rem;
+      font-size: clamp(0.85rem, 3vw, 1.05rem);
+      color: #fff3e0cc;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* decorative stars */
+    .star { display: inline-block; animation: spin 6s linear infinite; }
+    .star2 { animation-duration: 9s; animation-direction: reverse; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    .section-label {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.1rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── GAME GRID ── */
+    /*
+      TO ADD A GAME: copy one <a class="game-card"> block and update
+      href, the emoji, <h2>, and <p>.  That's it!
+    */
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .game-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--card-bg);
+      border: 2.5px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.6rem 1.4rem 1.4rem;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      box-shadow: 0 4px 16px var(--card-shadow), 0 1px 3px #0001;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      background: linear-gradient(135deg, transparent 60%, #ff9f4311);
+      pointer-events: none;
+    }
+
+    .game-card:hover, .game-card:focus-visible {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 12px 32px #f4a26133, 0 2px 8px #0001;
+      border-color: var(--header-accent);
+      background: var(--card-hover);
+      outline: none;
+    }
+
+    .game-card:active {
+      transform: translateY(-2px) scale(1.01);
+    }
+
+    .game-emoji {
+      font-size: 2.8rem;
+      margin-bottom: 0.75rem;
+      display: block;
+      line-height: 1;
+      filter: drop-shadow(2px 3px 0 #0001);
+    }
+
+    .game-card h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.35rem;
+      color: var(--accent1);
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+
+    .game-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .play-badge {
+      margin-top: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--accent1);
+      color: #fff;
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      padding: 0.35rem 0.9rem;
+      border-radius: 50px;
+      align-self: flex-start;
+      transition: background 0.15s;
+    }
+
+    .game-card:hover .play-badge { background: #e05555; }
+
+    .game-author {
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      color: #bfa090;
+      font-style: italic;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem 2.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    footer a { color: var(--accent1); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <span class="meep">Meep</span><span class="ity">ity</span>
+      <span class="meep"> Games</span>
+    </div>
+    <p class="tagline">
+      <span class="star">★</span>&nbsp;
+      Fun little games for curious minds
+      &nbsp;<span class="star star2">★</span>
+    </p>
+  </header>
+
+  <main>
+    <p class="section-label">🎮 Games</p>
+
+    <div class="game-grid">
+
+      <!-- ════════════════════════════════════════════════════════════════
+           GAME ENTRY — copy this block to add another game!
+           Update: href, emoji, <h2> title, <p> description, .game-author
+           ════════════════════════════════════════════════════════════════ -->
+      <a class="game-card" href="multiplication.html">
+        <span class="game-emoji">✖️</span>
+        <h2>Multiplication</h2>
+        <p>Practice times tables and see how fast you can go!</p>
+        <span class="play-badge">▶ Play</span>
+        <span class="game-author">by Ksenia Samokhvalova 2025 (using Claude Sonnet)</span>
+      </a>
+
+      <!-- Add more game cards here -->
+
+    </div>
+  </main>
+
+  <footer>
+    Meepity Games
+  </footer>
+
+</body>
+</html>
