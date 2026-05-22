@@ -9,18 +9,19 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: #f5f5f3; min-height: 100vh; padding: 2rem 1rem; }
   #root { max-width: 620px; margin: 0 auto; }
-  .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+  .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; }
   .timer-box { display: flex; align-items: center; gap: 8px; }
   .timer-val { font-size: 20px; font-weight: 500; color: #1a1a18; font-variant-numeric: tabular-nums; }
-  .top-actions { display: flex; gap: 12px; align-items: center; }
+  .top-actions { display: flex; gap: 8px; align-items: center; }
   .icon-btn { background: #fff; border: 1px solid #c8c7bf; border-radius: 8px; padding: 5px 10px; cursor: pointer; color: #5f5e5a; font-size: 15px; display: flex; align-items: center; gap: 5px; font-family: inherit; white-space: nowrap; }
   .icon-btn:hover { background: #f1efe8; }
-  .toggle-wrap { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #5f5e5a; cursor: pointer; user-select: none; }
-  .toggle-wrap:hover { color: #1a1a18; }
-  .toggle { width: 28px; height: 16px; border-radius: 999px; background: #c8c7bf; position: relative; transition: background 0.2s; flex-shrink: 0; }
-  .toggle.on { background: #2D7D0A; }
-  .toggle::after { content: ''; position: absolute; width: 12px; height: 12px; border-radius: 50%; background: #fff; top: 2px; left: 2px; transition: left 0.2s; }
-  .toggle.on::after { left: 14px; }
+  .mode-row { display: flex; align-items: center; gap: 10px; margin-bottom: 1.25rem; }
+  .mode-label { font-size: 13px; color: #888780; font-weight: 500; white-space: nowrap; }
+  .mode-options { display: flex; border: 1px solid #c8c7bf; border-radius: 8px; overflow: hidden; flex: 1; }
+  .mode-option { flex: 1; padding: 6px 8px; font-size: 13px; text-align: center; cursor: pointer; color: #5f5e5a; background: #fff; border: none; border-right: 1px solid #c8c7bf; font-family: inherit; white-space: nowrap; transition: background 0.15s; }
+  .mode-option:last-child { border-right: none; }
+  .mode-option:hover:not(.active) { background: #f1efe8; }
+  .mode-option.active { background: #f1efe8; color: #1a1a18; font-weight: 500; }
   .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 1.25rem; }
   .stat { background: #f1efe8; border-radius: 8px; padding: 0.75rem; text-align: center; }
   .stat-val { font-size: 22px; font-weight: 500; color: #1a1a18; }
@@ -43,6 +44,7 @@
   #submit-btn:active { transform: scale(0.97); }
   .feedback { font-size: 17px; font-weight: 500; min-height: 32px; margin-top: 1rem; color: #888780; }
   .feedback.ok { color: #1a4d04; }
+  .feedback.ok2 { color: #1a5fa8; font-size: 15px; }
   .feedback.bad { color: #8B1A1A; }
   .feedback.streak { color: #1a4d04; font-size: 24px; font-weight: 700; }
   .paused-overlay { display: none; position: absolute; inset: 0; background: rgba(0,0,0,0.45); border-radius: 12px; align-items: center; justify-content: center; z-index: 5; }
@@ -93,8 +95,13 @@
   .wrong-review-title { font-size: 13px; font-weight: 500; color: #888780; margin-bottom: 0.75rem; }
   .wrong-fact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; }
   .wrong-fact { background: #F5C6C6; border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: 500; color: #5C0A0A; text-align: center; }
+  .complete-btn-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
   .play-again-btn { font-size: 16px; padding: 0.6rem 1.75rem; border-radius: 8px; border: 1px solid #c8c7bf; background: #f1efe8; cursor: pointer; color: #1a1a18; font-family: inherit; }
   .play-again-btn:hover { background: #fff; }
+  .share-btn { font-size: 16px; padding: 0.6rem 1.75rem; border-radius: 8px; border: 1px solid #c8c7bf; background: #fff; cursor: pointer; color: #1a1a18; font-family: inherit; display: inline-flex; align-items: center; gap: 6px; transition: background 0.15s; }
+  .share-btn:hover { background: #f1efe8; }
+  .share-btn.copied { background: #D6EDBB; border-color: #2D7D0A; color: #1a4d04; }
+  .version { font-size: 11px; color: #b4b2a9; text-align: right; padding: 1rem 0 0.25rem; }
 </style>
 </head>
 <body>
@@ -105,10 +112,6 @@
       <span class="timer-val" id="timer">0:00</span>
     </div>
     <div class="top-actions">
-      <div class="toggle-wrap" onclick="toggleNoRepeats()">
-        <div class="toggle on" id="no-repeats-toggle"></div>
-        No repeats
-      </div>
       <button class="icon-btn" id="pause-btn" onclick="togglePause()">
         <i class="ti ti-player-pause" id="pause-icon" aria-hidden="true"></i>
         <span id="pause-label">Pause</span>
@@ -119,6 +122,15 @@
       <button class="icon-btn" onclick="openStats()">
         <i class="ti ti-chart-bar" aria-hidden="true"></i> Stats
       </button>
+    </div>
+  </div>
+
+  <div class="mode-row">
+    <span class="mode-label">Mode</span>
+    <div class="mode-options">
+      <button class="mode-option active" id="mode-stick" onclick="setMode('stick')">Make it stick</button>
+      <button class="mode-option" id="mode-clear" onclick="setMode('clear')">Clear the board</button>
+      <button class="mode-option" id="mode-endless" onclick="setMode('endless')">Endless</button>
     </div>
   </div>
 
@@ -174,10 +186,20 @@
           <div class="wrong-review-title">Review these facts</div>
           <div class="wrong-fact-grid" id="wrong-fact-grid"></div>
         </div>
-        <button class="play-again-btn" onclick="doRestart()">Play again</button>
+        <div class="complete-btn-row">
+          <button class="play-again-btn" onclick="doRestart()">Play again</button>
+          <button class="share-btn" id="share-btn" onclick="shareResults()">
+            <i class="ti ti-share" aria-hidden="true"></i>
+            <span id="share-label">Share results</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
+</div>
+
+<div style="max-width:620px;margin:0 auto;">
+  <div class="version">v3.0</div>
 </div>
 
 <div class="modal-backdrop" id="stats-modal">
@@ -208,15 +230,21 @@
 
 <script>
 const TOTAL = 121;
-let noRepeats = true;
+
+// mode: 'stick' | 'clear' | 'endless'
+let mode = 'stick';
+
 let weights = {}, cellStats = {}, retired = {};
+let priorityQueue = []; // facts that must resurface soon after a wrong answer
 
 function initData() {
-  weights = {}; cellStats = {}; retired = {};
+  weights = {}; cellStats = {}; retired = {}; priorityQueue = [];
   for (let a = 2; a <= 12; a++)
     for (let b = 2; b <= 12; b++) {
       weights[`${a}x${b}`] = 1;
-      cellStats[`${a}x${b}`] = { correct: 0, wrong: 0 };
+      // correctStreak: consecutive correct answers since last wrong
+      // wrongEver: whether this fact has ever been answered wrong
+      cellStats[`${a}x${b}`] = { correct: 0, wrong: 0, correctStreak: 0, wrongEver: false };
       retired[`${a}x${b}`] = false;
     }
 }
@@ -248,10 +276,12 @@ function fmtTime(s) {
   return `${Math.floor(s/60)}:${(s%60).toString().padStart(2,'0')}`;
 }
 
-function toggleNoRepeats() {
-  noRepeats = !noRepeats;
-  document.getElementById('no-repeats-toggle').classList.toggle('on', noRepeats);
-  document.getElementById('progress-wrap').style.display = noRepeats ? '' : 'none';
+function setMode(m) {
+  mode = m;
+  ['stick','clear','endless'].forEach(id => {
+    document.getElementById(`mode-${id}`).classList.toggle('active', id === m);
+  });
+  document.getElementById('progress-wrap').style.display = (mode === 'endless') ? 'none' : '';
 }
 
 function setPaused(val) {
@@ -282,6 +312,23 @@ function activeKeys() {
 }
 
 function pickQuestion() {
+  // Drain priority queue first, skipping retired facts only.
+  // We allow showing the same fact again if it's the only wrong one queued —
+  // just don't show it as the very next question if something else is available.
+  while (priorityQueue.length > 0) {
+    const candidate = priorityQueue[0];
+    if (retired[candidate]) {
+      priorityQueue.shift(); // discard retired
+      continue;
+    }
+    // If candidate is the same as the last question and there are other active keys, defer it
+    if (current && candidate === current.key && activeKeys().filter(k => k !== candidate).length > 0) {
+      priorityQueue.shift();
+      priorityQueue.splice(1, 0, candidate); // push it one slot later
+      break;
+    }
+    return priorityQueue.shift();
+  }
   const keys = activeKeys();
   if (keys.length === 0) return null;
   const total = keys.reduce((s, k) => s + weights[k], 0);
@@ -308,6 +355,15 @@ function nextQuestion() {
   inp.focus();
 }
 
+function shouldRetire(key) {
+  const cs = cellStats[key];
+  if (mode === 'endless') return false;
+  if (mode === 'clear') return cs.correctStreak >= 1;
+  // make it stick: needs 2 consecutive correct if ever wrong, else 1
+  if (mode === 'stick') return cs.wrongEver ? cs.correctStreak >= 2 : cs.correctStreak >= 1;
+  return false;
+}
+
 function submitAnswer() {
   if (answered || paused) return;
   const inp = document.getElementById('answer-input');
@@ -317,35 +373,58 @@ function submitAnswer() {
   const fb = document.getElementById('feedback');
   const btn = document.getElementById('submit-btn');
   btn.textContent = 'Next →'; btn.onclick = nextQuestion;
+  const cs = cellStats[current.key];
 
   if (val === current.correct) {
     inp.classList.add('correct');
     stats.correct++; stats.streak++;
     if (stats.streak > stats.bestStreak) stats.bestStreak = stats.streak;
-    cellStats[current.key].correct++;
-    if (noRepeats) {
+    cs.correct++; cs.correctStreak++;
+
+    if (shouldRetire(current.key)) {
       retired[current.key] = true;
       retiredCount++;
       weights[current.key] = 0;
+      priorityQueue = priorityQueue.filter(k => k !== current.key);
+      if (stats.streak > 0 && stats.streak % 10 === 0) {
+        fb.textContent = `🎉 ${stats.streak} in a row!`;
+        fb.className = 'feedback streak';
+        launchConfetti('confetti-canvas');
+      } else {
+        fb.textContent = '✓ Correct!';
+        fb.className = 'feedback ok';
+      }
+      if (mode !== 'endless' && retiredCount >= TOTAL) { showComplete(); return; }
     } else {
-      weights[current.key] = Math.max(1, weights[current.key] - 0.3);
+      // make it stick: got it right once after being wrong — coming back one more time
+      if (mode === 'stick' && cs.wrongEver && cs.correctStreak === 1) {
+        weights[current.key] = 4;
+        priorityQueue = priorityQueue.filter(k => k !== current.key);
+        fb.textContent = '✓ Correct! Answer it right once more to clear it.';
+        fb.className = 'feedback ok2';
+      } else {
+        if (stats.streak > 0 && stats.streak % 10 === 0) {
+          fb.textContent = `🎉 ${stats.streak} in a row!`;
+          fb.className = 'feedback streak';
+          launchConfetti('confetti-canvas');
+        } else {
+          fb.textContent = '✓ Correct!';
+          fb.className = 'feedback ok';
+        }
+        weights[current.key] = Math.max(1, weights[current.key] - 0.3);
+      }
     }
-    if (stats.streak > 0 && stats.streak % 10 === 0) {
-      fb.textContent = `🎉 ${stats.streak} in a row!`;
-      fb.className = 'feedback streak';
-      launchConfetti('confetti-canvas');
-    } else {
-      fb.textContent = '✓ Correct!';
-      fb.className = 'feedback ok';
-    }
-    if (noRepeats && retiredCount >= TOTAL) { showComplete(); return; }
   } else {
     inp.classList.add('wrong');
     fb.textContent = `✗ The answer is ${current.correct}`;
     fb.className = 'feedback bad';
     stats.wrong++; stats.streak = 0;
-    weights[current.key] = 8;
-    cellStats[current.key].wrong++;
+    cs.wrong++; cs.wrongEver = true; cs.correctStreak = 0;
+    // Insert into priority queue at position 1-2 (after 1-2 other questions max)
+    const insertAt = Math.floor(Math.random() * 2) + 1;
+    const insertPos = Math.min(insertAt, priorityQueue.length);
+    priorityQueue.splice(insertPos, 0, current.key);
+    weights[current.key] = 3; // keep moderate weight as fallback
   }
   updateStats();
 }
@@ -381,7 +460,6 @@ function showComplete() {
   } else {
     reviewSection.style.display = 'none';
   }
-
   setTimeout(() => launchConfetti('confetti-canvas-complete'), 100);
 }
 
@@ -389,16 +467,26 @@ function updateStats() {
   document.getElementById('s-correct').textContent = stats.correct;
   document.getElementById('s-wrong').textContent = stats.wrong;
   document.getElementById('s-streak').textContent = stats.streak;
-  if (noRepeats) {
+
+  if (mode !== 'endless') {
     const remaining = TOTAL - retiredCount;
     const pct = Math.round((retiredCount / TOTAL) * 100);
     document.getElementById('progress-text').textContent = remaining === 0 ? 'All done!' : `${remaining} remaining`;
     document.getElementById('progress-pct').textContent = `${pct}%`;
     document.getElementById('progress-fill').style.width = `${pct}%`;
   }
+
+  // "Coming back soon" — facts with high weight that haven't been cleared and still need work
+  // For stick mode: only show if correctStreak === 0 (not already got right once waiting for second)
   const trouble = Object.entries(weights)
-    .filter(([k, w]) => !retired[k] && w >= 3)
+    .filter(([k, w]) => {
+      if (retired[k]) return false;
+      if (w < 3) return false;
+      if (mode === 'stick') return cellStats[k].correctStreak === 0;
+      return true;
+    })
     .sort((a, b) => b[1] - a[1]).slice(0, 8);
+
   const pills = document.getElementById('trouble-pills');
   const title = document.getElementById('trouble-title');
   pills.innerHTML = '';
@@ -450,6 +538,47 @@ function launchConfetti(canvasId) {
   draw();
 }
 
+function shareResults() {
+  const now = new Date();
+  const day = now.getDate();
+  const month = now.toLocaleString('en-GB', { month: 'short' });
+  const time = now.toLocaleString('en-GB', { hour: 'numeric', minute: '2-digit', hour12: true }).toUpperCase();
+  const dateStr = `${day} ${month} · ${time}`;
+  const modeNames = { stick: 'Make it stick', clear: 'Clear the board', endless: 'Endless' };
+  const perfect = stats.wrong === 0 ? ' Perfect score! 🌟' : '';
+  const text = [
+    `🎉 Times table challenge`,
+    `${modeNames[mode]} — ${dateStr}`,
+    `Cleared all ${TOTAL} facts!${perfect}`,
+    '',
+    `⏱  ${fmtTime(seconds)}`,
+    `✓  ${stats.correct} correct`,
+    `✗  ${stats.wrong} wrong`,
+    `🔥 ${stats.bestStreak} best streak`,
+    '',
+    'https://games.meepity.net/multiplication.html',
+  ].join('\n');
+
+  const btn = document.getElementById('share-btn');
+  const label = document.getElementById('share-label');
+  const reset = () => {
+    btn.classList.remove('copied');
+    label.textContent = 'Share results';
+  };
+  const confirm = () => {
+    btn.classList.add('copied');
+    label.textContent = 'Copied!';
+    setTimeout(reset, 2000);
+  };
+  navigator.clipboard.writeText(text).then(confirm).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    confirm();
+  });
+}
+
 function openStats() {
   renderGrid();
   if (!paused && !gameComplete) { pausedBeforeStats = true; setPaused(true); }
@@ -466,7 +595,7 @@ function doRestart() {
   document.getElementById('confirm-modal').classList.remove('open');
   initData();
   stats = { correct: 0, wrong: 0, streak: 0, bestStreak: 0 };
-  seconds = 0; retiredCount = 0; gameComplete = false; pausedBeforeStats = false;
+  seconds = 0; retiredCount = 0; gameComplete = false; pausedBeforeStats = false; priorityQueue = [];
   document.getElementById('timer').textContent = '0:00';
   document.getElementById('game-area').style.display = '';
   document.getElementById('complete-area').style.display = 'none';
