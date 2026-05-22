@@ -13,15 +13,16 @@
   .timer-box { display: flex; align-items: center; gap: 8px; }
   .timer-val { font-size: 20px; font-weight: 500; color: #1a1a18; font-variant-numeric: tabular-nums; }
   .top-actions { display: flex; gap: 8px; align-items: center; }
-  .icon-btn { background: #fff; border: 1px solid #c8c7bf; border-radius: 8px; padding: 5px 10px; cursor: pointer; color: #5f5e5a; font-size: 15px; display: flex; align-items: center; gap: 5px; font-family: inherit; white-space: nowrap; }
-  .icon-btn:hover { background: #f1efe8; }
-  .mode-row { display: flex; align-items: center; gap: 10px; margin-bottom: 1.25rem; }
-  .mode-label { font-size: 13px; color: #888780; font-weight: 500; white-space: nowrap; }
-  .mode-options { display: flex; border: 1px solid #c8c7bf; border-radius: 8px; overflow: hidden; flex: 1; }
-  .mode-option { flex: 1; padding: 6px 8px; font-size: 13px; text-align: center; cursor: pointer; color: #5f5e5a; background: #fff; border: none; border-right: 1px solid #c8c7bf; font-family: inherit; white-space: nowrap; transition: background 0.15s; }
-  .mode-option:last-child { border-right: none; }
-  .mode-option:hover:not(.active) { background: #f1efe8; }
-  .mode-option.active { background: #f1efe8; color: #1a1a18; font-weight: 500; }
+  .icon-btn { background: #fff; border: 1px solid #c8c7bf; border-radius: 8px; padding: 5px 10px; cursor: pointer; color: #5f5e5a; font-size: 15px; display: flex; align-items: center; gap: 5px; font-family: inherit; white-space: nowrap; transition: opacity 0.2s; }
+  .icon-btn:hover:not(.disabled) { background: #f1efe8; }
+  .icon-btn.disabled { opacity: 0.35; pointer-events: none; }
+  .toggle-row { display: flex; align-items: center; margin-bottom: 1.25rem; }
+  .toggle-wrap { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #5f5e5a; cursor: pointer; user-select: none; }
+  .toggle-wrap:hover { color: #1a1a18; }
+  .toggle { width: 28px; height: 16px; border-radius: 999px; background: #c8c7bf; position: relative; transition: background 0.2s; flex-shrink: 0; }
+  .toggle.on { background: #2D7D0A; }
+  .toggle::after { content: ''; position: absolute; width: 12px; height: 12px; border-radius: 50%; background: #fff; top: 2px; left: 2px; transition: left 0.2s; }
+  .toggle.on::after { left: 14px; }
   .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 1.25rem; }
   .stat { background: #f1efe8; border-radius: 8px; padding: 0.75rem; text-align: center; }
   .stat-val { font-size: 22px; font-weight: 500; color: #1a1a18; }
@@ -56,19 +57,14 @@
   .pill { background: #F5E6E0; border-radius: 20px; padding: 4px 12px; font-size: 13px; color: #7A2310; }
   .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); align-items: center; justify-content: center; z-index: 100; padding: 1rem; }
   .modal-backdrop.open { display: flex; }
-  .modal { background: #fff; border-radius: 12px; border: 1px solid #c8c7bf; padding: 1.5rem; width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; }
+  .modal { background: #fff; border-radius: 12px; border: 1px solid #c8c7bf; padding: 1.5rem; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; }
   .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
   .modal-title { font-size: 16px; font-weight: 600; color: #1a1a18; }
   .close-btn { background: none; border: none; cursor: pointer; color: #888780; font-size: 20px; padding: 2px; display: flex; align-items: center; }
   .close-btn:hover { color: #1a1a18; }
-  .section-title { font-size: 11px; font-weight: 600; color: #888780; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
-  .mode-info-list { display: flex; flex-direction: column; gap: 10px; }
-  .mode-info-item { padding: 12px 14px; background: #f1efe8; border-radius: 8px; }
-  .mode-info-name { font-size: 14px; font-weight: 600; color: #1a1a18; margin-bottom: 3px; }
-  .mode-info-desc { font-size: 13px; color: #5f5e5a; line-height: 1.5; }
-  .mode-setting { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 12px; padding-top: 12px; border-top: 1px solid #d3d1c7; }
-  .mode-setting-label { font-size: 13px; color: #1a1a18; font-weight: 500; }
-  .mode-setting-sublabel { font-size: 12px; color: #888780; margin-top: 2px; line-height: 1.4; }
+  .setting-group { display: flex; flex-direction: column; border: 1px solid #c8c7bf; border-radius: 8px; overflow: hidden; }
+  .setting-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 14px; background: #f1efe8; }
+  .setting-sublabel { font-size: 13px; color: #5f5e5a; line-height: 1.5; }
   .stepper { display: flex; align-items: center; border: 1px solid #c8c7bf; border-radius: 8px; overflow: hidden; flex-shrink: 0; background: #fff; }
   .stepper-btn { background: transparent; border: none; width: 32px; height: 32px; font-size: 18px; cursor: pointer; color: #1a1a18; display: flex; align-items: center; justify-content: center; font-family: inherit; }
   .stepper-btn:hover:not(:disabled) { background: #f1efe8; }
@@ -136,17 +132,16 @@
       <button class="icon-btn" onclick="openStats()">
         <i class="ti ti-chart-bar" aria-hidden="true"></i> Stats
       </button>
-      <button class="icon-btn" onclick="openSettings()">
+      <button class="icon-btn" id="settings-btn" onclick="openSettings()">
         <i class="ti ti-settings" aria-hidden="true"></i> Settings
       </button>
     </div>
   </div>
 
-  <div class="mode-row">
-    <span class="mode-label">Mode</span>
-    <div class="mode-options">
-      <button class="mode-option active" id="mode-stick" onclick="setMode('stick')">Make it stick</button>
-      <button class="mode-option" id="mode-endless" onclick="setMode('endless')">Endless</button>
+  <div class="toggle-row">
+    <div class="toggle-wrap" onclick="toggleEndless()">
+      <div class="toggle" id="endless-toggle"></div>
+      Endless
     </div>
   </div>
 
@@ -215,7 +210,7 @@
 </div>
 
 <div style="max-width:620px;margin:0 auto;">
-  <div class="version">v3.3</div>
+  <div class="version">v3.4</div>
 </div>
 
 <div class="modal-backdrop" id="settings-modal">
@@ -224,33 +219,21 @@
       <p class="modal-title">Settings</p>
       <button class="close-btn" onclick="closeSettings()"><i class="ti ti-x"></i></button>
     </div>
-    <div class="section-title">Game modes</div>
-    <div class="mode-info-list">
-      <div class="mode-info-item">
-        <div class="mode-info-name">Make it stick</div>
-        <div class="mode-info-desc">Facts you miss come back until you've answered them correctly. Game ends when all 121 facts are cleared.</div>
-        <div class="mode-setting">
-          <div>
-            <div class="mode-setting-label">Repetitions to clear</div>
-            <div class="mode-setting-sublabel">Times a wrong fact must be answered correctly before it's cleared</div>
-          </div>
-          <div class="stepper">
-            <button class="stepper-btn" id="btn-minus" onclick="adjReps(-1)">−</button>
-            <div class="stepper-val" id="rep-val">2</div>
-            <button class="stepper-btn" id="btn-plus" onclick="adjReps(1)">+</button>
-          </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <div class="setting-sublabel">Number of times a wrong fact must be answered correctly before it is cleared</div>
+        <div class="stepper">
+          <button class="stepper-btn" id="btn-minus" onclick="adjReps(-1)">−</button>
+          <div class="stepper-val" id="rep-val">2</div>
+          <button class="stepper-btn" id="btn-plus" onclick="adjReps(1)">+</button>
         </div>
-      </div>
-      <div class="mode-info-item">
-        <div class="mode-info-name">Endless</div>
-        <div class="mode-info-desc">The game keeps going as long as you want. Facts you get wrong come back more often.</div>
       </div>
     </div>
   </div>
 </div>
 
 <div class="modal-backdrop" id="stats-modal">
-  <div class="modal">
+  <div class="modal" style="max-width:560px;">
     <div class="modal-header">
       <p class="modal-title">Times table progress</p>
       <button class="close-btn" onclick="closeStats()"><i class="ti ti-x"></i></button>
@@ -278,7 +261,7 @@
 
 <script>
 const TOTAL = 121;
-let mode = 'stick';
+let endless = false;
 let repsNeeded = 2;
 
 let weights = {}, cellStats = {}, retired = {};
@@ -328,26 +311,24 @@ function adjReps(d) {
   document.getElementById('btn-plus').disabled = repsNeeded === 3;
 }
 
-function setMode(m) {
-  const prev = mode;
-  mode = m;
-  ['stick','endless'].forEach(id => {
-    document.getElementById(`mode-${id}`).classList.toggle('active', id === m);
-  });
-  document.getElementById('progress-wrap').style.display = (mode === 'endless') ? 'none' : '';
+function toggleEndless() {
+  endless = !endless;
+  document.getElementById('endless-toggle').classList.toggle('on', endless);
+  document.getElementById('progress-wrap').style.display = endless ? 'none' : '';
+  document.getElementById('settings-btn').classList.toggle('disabled', endless);
 
-  // Clear the "one more to clear it" message if switching to Endless
-  if (m === 'endless') {
-    const fb = document.getElementById('feedback');
-    if (fb.classList.contains('ok2')) {
-      fb.textContent = '✓ Correct!';
-      fb.className = 'feedback ok';
-    }
+  // Clear ok2 feedback if switching to endless
+  const fb = document.getElementById('feedback');
+  if (endless && fb.classList.contains('ok2')) {
+    fb.textContent = '✓ Correct!';
+    fb.className = 'feedback ok';
   }
 
-  // When switching to Make it stick, recalculate which facts qualify as retired
-  // based on current repsNeeded setting and each fact's correctStreak/wrongEver state
-  if (m === 'stick' && prev === 'endless') {
+  // Close settings if open
+  if (endless) closeSettings();
+
+  // Switching endless off — recalculate retired facts
+  if (!endless) {
     retiredCount = 0;
     for (const key of Object.keys(cellStats)) {
       const cs = cellStats[key];
@@ -358,17 +339,12 @@ function setMode(m) {
         priorityQueue = priorityQueue.filter(k => k !== key);
         retiredCount++;
       } else {
-        // un-retire in case they previously had it retired in a prior stick session
-        if (retired[key]) {
-          retired[key] = false;
-          weights[key] = 1;
-        }
+        if (retired[key]) { retired[key] = false; weights[key] = 1; }
       }
     }
-    updateStats();
-    // If all facts already qualify, show completion
     if (retiredCount >= TOTAL) { showComplete(); return; }
   }
+  updateStats();
 }
 
 function setPaused(val) {
@@ -428,7 +404,7 @@ function nextQuestion() {
   document.getElementById('submit-btn').onclick = submitAnswer;
   document.getElementById('submit-btn').disabled = false;
   const key = pickQuestion();
-  if (!key) { showComplete(); return; }
+  if (!key) { if (!endless) showComplete(); return; }
   const [a, b] = key.split('x').map(Number);
   current = { key, a, b, correct: a * b };
   document.getElementById('question').textContent = `${a} × ${b} = ?`;
@@ -436,7 +412,7 @@ function nextQuestion() {
 }
 
 function shouldRetire(key) {
-  if (mode === 'endless') return false;
+  if (endless) return false;
   const cs = cellStats[key];
   const needed = cs.wrongEver ? repsNeeded : 1;
   return cs.correctStreak >= needed;
@@ -472,9 +448,9 @@ function submitAnswer() {
         fb.textContent = '✓ Correct!';
         fb.className = 'feedback ok';
       }
-      if (mode !== 'endless' && retiredCount >= TOTAL) { showComplete(); return; }
+      if (!endless && retiredCount >= TOTAL) { showComplete(); return; }
     } else {
-      if (mode === 'stick' && cs.wrongEver && cs.correctStreak < repsNeeded) {
+      if (!endless && cs.wrongEver && cs.correctStreak < repsNeeded) {
         const remaining = repsNeeded - cs.correctStreak;
         priorityQueue = priorityQueue.filter(k => k !== current.key);
         weights[current.key] = 4;
@@ -544,7 +520,7 @@ function updateStats() {
   document.getElementById('s-correct').textContent = stats.correct;
   document.getElementById('s-wrong').textContent = stats.wrong;
   document.getElementById('s-streak').textContent = stats.streak;
-  if (mode !== 'endless') {
+  if (!endless) {
     const remaining = TOTAL - retiredCount;
     const pct = Math.round((retiredCount / TOTAL) * 100);
     document.getElementById('progress-text').textContent = remaining === 0 ? 'All done!' : `${remaining} remaining`;
@@ -555,8 +531,7 @@ function updateStats() {
     .filter(([k, w]) => {
       if (retired[k]) return false;
       if (w < 3) return false;
-      if (mode === 'stick') return cellStats[k].correctStreak === 0;
-      return true;
+      return cellStats[k].correctStreak === 0;
     })
     .sort((a, b) => b[1] - a[1]).slice(0, 8);
   const pills = document.getElementById('trouble-pills');
@@ -616,11 +591,11 @@ function shareResults() {
   const month = now.toLocaleString('en-GB', { month: 'short' });
   const time = now.toLocaleString('en-GB', { hour: 'numeric', minute: '2-digit', hour12: true }).toUpperCase();
   const dateStr = `${day} ${month} · ${time}`;
-  const modeNames = { stick: 'Make it stick', endless: 'Endless' };
+  const modeName = endless ? 'Endless' : 'Standard';
   const perfect = stats.wrong === 0 ? ' Perfect score! 🌟' : '';
   const text = [
     `🎉 Times table challenge`,
-    `${modeNames[mode]} — ${dateStr}`,
+    `${modeName} — ${dateStr}`,
     `Cleared all ${TOTAL} facts!${perfect}`,
     '',
     `⏱  ${fmtTime(seconds)}`,
@@ -643,8 +618,12 @@ function shareResults() {
   });
 }
 
-function openSettings() { document.getElementById('settings-modal').classList.add('open'); }
+function openSettings() {
+  if (endless) return;
+  document.getElementById('settings-modal').classList.add('open');
+}
 function closeSettings() { document.getElementById('settings-modal').classList.remove('open'); }
+
 function openStats() {
   renderGrid();
   if (!paused && !gameComplete) { pausedBeforeStats = true; setPaused(true); }
@@ -687,7 +666,8 @@ function renderGrid() {
       const td = document.createElement('td');
       td.textContent = a * b;
       if (retired[key]) {
-        td.className = 'cell-retired'; td.title = `${a}×${b}: ${cs.correct} correct, ${cs.wrong} wrong`;
+        td.className = 'cell-retired';
+        td.title = `${a}×${b}: ${cs.correct} correct, ${cs.wrong} wrong`;
       } else if (cs.correct === 0 && cs.wrong === 0) {
         td.className = 'cell-unseen';
       } else {
@@ -701,11 +681,11 @@ function renderGrid() {
     }
     table.appendChild(row);
   }
-  const summary = document.getElementById('grid-summary');
   const notSeen = TOTAL - retiredCount - seen;
+  const summary = document.getElementById('grid-summary');
   if (retiredCount === 0 && seen === 0) {
     summary.innerHTML = 'No questions answered yet — get practicing!';
-  } else if (mode === 'endless') {
+  } else if (endless) {
     summary.innerHTML = `<span>${notSeen}</span> not seen · <span>${seen}</span> to train up`;
   } else {
     summary.innerHTML = `<span>${notSeen}</span> not seen · <span>${seen}</span> to revisit · <span>${retiredCount}</span> retired`;
