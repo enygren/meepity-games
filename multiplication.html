@@ -16,10 +16,7 @@
   .icon-btn { background: #fff; border: 1px solid #c8c7bf; border-radius: 8px; padding: 5px 10px; cursor: pointer; color: #5f5e5a; font-size: 15px; display: flex; align-items: center; gap: 5px; font-family: inherit; white-space: nowrap; }
   .icon-btn:hover { background: #f1efe8; }
   .mode-row { display: flex; align-items: center; gap: 10px; margin-bottom: 1.25rem; }
-  .mode-label-wrap { display: flex; align-items: center; gap: 5px; }
   .mode-label { font-size: 13px; color: #888780; font-weight: 500; white-space: nowrap; }
-  .info-btn { background: none; border: none; cursor: pointer; color: #b4b2a9; font-size: 15px; display: flex; align-items: center; padding: 0; line-height: 1; }
-  .info-btn:hover { color: #5f5e5a; }
   .mode-options { display: flex; border: 1px solid #c8c7bf; border-radius: 8px; overflow: hidden; flex: 1; }
   .mode-option { flex: 1; padding: 6px 8px; font-size: 13px; text-align: center; cursor: pointer; color: #5f5e5a; background: #fff; border: none; border-right: 1px solid #c8c7bf; font-family: inherit; white-space: nowrap; transition: background 0.15s; }
   .mode-option:last-child { border-right: none; }
@@ -59,11 +56,24 @@
   .pill { background: #F5E6E0; border-radius: 20px; padding: 4px 12px; font-size: 13px; color: #7A2310; }
   .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); align-items: center; justify-content: center; z-index: 100; padding: 1rem; }
   .modal-backdrop.open { display: flex; }
-  .modal { background: #fff; border-radius: 12px; border: 1px solid #c8c7bf; padding: 1.5rem; width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; }
-  .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-  .modal-title { font-size: 16px; font-weight: 500; color: #1a1a18; }
+  .modal { background: #fff; border-radius: 12px; border: 1px solid #c8c7bf; padding: 1.5rem; width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; }
+  .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
+  .modal-title { font-size: 16px; font-weight: 600; color: #1a1a18; }
   .close-btn { background: none; border: none; cursor: pointer; color: #888780; font-size: 20px; padding: 2px; display: flex; align-items: center; }
   .close-btn:hover { color: #1a1a18; }
+  .section-title { font-size: 11px; font-weight: 600; color: #888780; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+  .mode-info-list { display: flex; flex-direction: column; gap: 10px; }
+  .mode-info-item { padding: 12px 14px; background: #f1efe8; border-radius: 8px; }
+  .mode-info-name { font-size: 14px; font-weight: 600; color: #1a1a18; margin-bottom: 3px; }
+  .mode-info-desc { font-size: 13px; color: #5f5e5a; line-height: 1.5; }
+  .mode-setting { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 12px; padding-top: 12px; border-top: 1px solid #d3d1c7; }
+  .mode-setting-label { font-size: 13px; color: #1a1a18; font-weight: 500; }
+  .mode-setting-sublabel { font-size: 12px; color: #888780; margin-top: 2px; line-height: 1.4; }
+  .stepper { display: flex; align-items: center; border: 1px solid #c8c7bf; border-radius: 8px; overflow: hidden; flex-shrink: 0; background: #fff; }
+  .stepper-btn { background: transparent; border: none; width: 32px; height: 32px; font-size: 18px; cursor: pointer; color: #1a1a18; display: flex; align-items: center; justify-content: center; font-family: inherit; }
+  .stepper-btn:hover:not(:disabled) { background: #f1efe8; }
+  .stepper-btn:disabled { color: #c8c7bf; cursor: default; }
+  .stepper-val { font-size: 15px; font-weight: 500; color: #1a1a18; width: 32px; text-align: center; border-left: 1px solid #c8c7bf; border-right: 1px solid #c8c7bf; line-height: 32px; }
   .grid-summary { font-size: 13px; color: #888780; margin-bottom: 12px; }
   .grid-summary span { font-weight: 500; color: #1a1a18; }
   .grid-wrap { overflow-x: auto; }
@@ -73,6 +83,7 @@
   .cell-unseen  { background: #f1efe8; color: #b4b2a9; }
   .cell-correct { background: #D6EDBB; color: #1a4d04; }
   .cell-wrong   { background: #F5C6C6; color: #5C0A0A; }
+  .cell-mixed   { background: #FAD9A0; color: #5C3100; }
   .cell-retired { background: #D6EDBB; color: #1a4d04; opacity: 0.45; }
   .grid-legend { display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap; align-items: center; }
   .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #888780; }
@@ -104,10 +115,6 @@
   .share-btn { font-size: 16px; padding: 0.6rem 1.75rem; border-radius: 8px; border: 1px solid #c8c7bf; background: #fff; cursor: pointer; color: #1a1a18; font-family: inherit; display: inline-flex; align-items: center; gap: 6px; transition: background 0.15s; }
   .share-btn:hover { background: #f1efe8; }
   .share-btn.copied { background: #D6EDBB; border-color: #2D7D0A; color: #1a4d04; }
-  .mode-info-section { margin-bottom: 1.25rem; }
-  .mode-info-section:last-child { margin-bottom: 0; }
-  .mode-info-name { font-size: 15px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
-  .mode-info-desc { font-size: 14px; color: #5f5e5a; line-height: 1.55; }
   .version { font-size: 11px; color: #b4b2a9; text-align: right; padding: 1rem 0 0.25rem; }
 </style>
 </head>
@@ -129,19 +136,16 @@
       <button class="icon-btn" onclick="openStats()">
         <i class="ti ti-chart-bar" aria-hidden="true"></i> Stats
       </button>
+      <button class="icon-btn" onclick="openSettings()">
+        <i class="ti ti-settings" aria-hidden="true"></i> Settings
+      </button>
     </div>
   </div>
 
   <div class="mode-row">
-    <div class="mode-label-wrap">
-      <span class="mode-label">Mode</span>
-      <button class="info-btn" onclick="openModeInfo()" aria-label="About game modes">
-        <i class="ti ti-info-circle" aria-hidden="true"></i>
-      </button>
-    </div>
+    <span class="mode-label">Mode</span>
     <div class="mode-options">
       <button class="mode-option active" id="mode-stick" onclick="setMode('stick')">Make it stick</button>
-      <button class="mode-option" id="mode-clear" onclick="setMode('clear')">Clear the board</button>
       <button class="mode-option" id="mode-endless" onclick="setMode('endless')">Endless</button>
     </div>
   </div>
@@ -211,26 +215,36 @@
 </div>
 
 <div style="max-width:620px;margin:0 auto;">
-  <div class="version">v3.1</div>
+  <div class="version">v3.3</div>
 </div>
 
-<div class="modal-backdrop" id="mode-info-modal">
+<div class="modal-backdrop" id="settings-modal">
   <div class="modal">
     <div class="modal-header">
-      <p class="modal-title">How modes work</p>
-      <button class="close-btn" onclick="closeModeInfo()"><i class="ti ti-x"></i></button>
+      <p class="modal-title">Settings</p>
+      <button class="close-btn" onclick="closeSettings()"><i class="ti ti-x"></i></button>
     </div>
-    <div class="mode-info-section">
-      <div class="mode-info-name">Make it stick</div>
-      <div class="mode-info-desc">Answer facts you got wrong correctly twice in a row to clear them. Game ends when you clear all 121 facts.</div>
-    </div>
-    <div class="mode-info-section">
-      <div class="mode-info-name">Clear the board</div>
-      <div class="mode-info-desc">Answer a fact correctly once to clear it. Game ends when you clear all 121 facts.</div>
-    </div>
-    <div class="mode-info-section">
-      <div class="mode-info-name">Endless</div>
-      <div class="mode-info-desc">The game keeps going as long as you want. Facts you get wrong come back more often.</div>
+    <div class="section-title">Game modes</div>
+    <div class="mode-info-list">
+      <div class="mode-info-item">
+        <div class="mode-info-name">Make it stick</div>
+        <div class="mode-info-desc">Facts you miss come back until you've answered them correctly. Game ends when all 121 facts are cleared.</div>
+        <div class="mode-setting">
+          <div>
+            <div class="mode-setting-label">Repetitions to clear</div>
+            <div class="mode-setting-sublabel">Times a wrong fact must be answered correctly before it's cleared</div>
+          </div>
+          <div class="stepper">
+            <button class="stepper-btn" id="btn-minus" onclick="adjReps(-1)">−</button>
+            <div class="stepper-val" id="rep-val">2</div>
+            <button class="stepper-btn" id="btn-plus" onclick="adjReps(1)">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="mode-info-item">
+        <div class="mode-info-name">Endless</div>
+        <div class="mode-info-desc">The game keeps going as long as you want. Facts you get wrong come back more often.</div>
+      </div>
     </div>
   </div>
 </div>
@@ -245,6 +259,7 @@
     <div class="grid-wrap"><table class="times-grid" id="times-grid"></table></div>
     <div class="grid-legend">
       <div class="legend-item"><div class="legend-swatch" style="background:#D6EDBB;"></div> Correct</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#FAD9A0;"></div> Mixed</div>
       <div class="legend-item"><div class="legend-swatch" style="background:#F5C6C6;"></div> Wrong</div>
       <div class="legend-item"><div class="legend-swatch" style="background:#f1efe8;"></div> Not seen</div>
     </div>
@@ -263,20 +278,17 @@
 
 <script>
 const TOTAL = 121;
-
-// mode: 'stick' | 'clear' | 'endless'
 let mode = 'stick';
+let repsNeeded = 2;
 
 let weights = {}, cellStats = {}, retired = {};
-let priorityQueue = []; // facts that must resurface soon after a wrong answer
+let priorityQueue = [];
 
 function initData() {
   weights = {}; cellStats = {}; retired = {}; priorityQueue = [];
   for (let a = 2; a <= 12; a++)
     for (let b = 2; b <= 12; b++) {
       weights[`${a}x${b}`] = 1;
-      // correctStreak: consecutive correct answers since last wrong
-      // wrongEver: whether this fact has ever been answered wrong
       cellStats[`${a}x${b}`] = { correct: 0, wrong: 0, correctStreak: 0, wrongEver: false };
       retired[`${a}x${b}`] = false;
     }
@@ -309,12 +321,54 @@ function fmtTime(s) {
   return `${Math.floor(s/60)}:${(s%60).toString().padStart(2,'0')}`;
 }
 
+function adjReps(d) {
+  repsNeeded = Math.min(3, Math.max(1, repsNeeded + d));
+  document.getElementById('rep-val').textContent = repsNeeded;
+  document.getElementById('btn-minus').disabled = repsNeeded === 1;
+  document.getElementById('btn-plus').disabled = repsNeeded === 3;
+}
+
 function setMode(m) {
+  const prev = mode;
   mode = m;
-  ['stick','clear','endless'].forEach(id => {
+  ['stick','endless'].forEach(id => {
     document.getElementById(`mode-${id}`).classList.toggle('active', id === m);
   });
   document.getElementById('progress-wrap').style.display = (mode === 'endless') ? 'none' : '';
+
+  // Clear the "one more to clear it" message if switching to Endless
+  if (m === 'endless') {
+    const fb = document.getElementById('feedback');
+    if (fb.classList.contains('ok2')) {
+      fb.textContent = '✓ Correct!';
+      fb.className = 'feedback ok';
+    }
+  }
+
+  // When switching to Make it stick, recalculate which facts qualify as retired
+  // based on current repsNeeded setting and each fact's correctStreak/wrongEver state
+  if (m === 'stick' && prev === 'endless') {
+    retiredCount = 0;
+    for (const key of Object.keys(cellStats)) {
+      const cs = cellStats[key];
+      const needed = cs.wrongEver ? repsNeeded : 1;
+      if (cs.correctStreak >= needed) {
+        retired[key] = true;
+        weights[key] = 0;
+        priorityQueue = priorityQueue.filter(k => k !== key);
+        retiredCount++;
+      } else {
+        // un-retire in case they previously had it retired in a prior stick session
+        if (retired[key]) {
+          retired[key] = false;
+          weights[key] = 1;
+        }
+      }
+    }
+    updateStats();
+    // If all facts already qualify, show completion
+    if (retiredCount >= TOTAL) { showComplete(); return; }
+  }
 }
 
 function setPaused(val) {
@@ -345,19 +399,12 @@ function activeKeys() {
 }
 
 function pickQuestion() {
-  // Drain priority queue first, skipping retired facts only.
-  // We allow showing the same fact again if it's the only wrong one queued —
-  // just don't show it as the very next question if something else is available.
   while (priorityQueue.length > 0) {
     const candidate = priorityQueue[0];
-    if (retired[candidate]) {
-      priorityQueue.shift(); // discard retired
-      continue;
-    }
-    // If candidate is the same as the last question and there are other active keys, defer it
+    if (retired[candidate]) { priorityQueue.shift(); continue; }
     if (current && candidate === current.key && activeKeys().filter(k => k !== candidate).length > 0) {
       priorityQueue.shift();
-      priorityQueue.splice(1, 0, candidate); // push it one slot later
+      priorityQueue.splice(1, 0, candidate);
       break;
     }
     return priorityQueue.shift();
@@ -389,12 +436,10 @@ function nextQuestion() {
 }
 
 function shouldRetire(key) {
-  const cs = cellStats[key];
   if (mode === 'endless') return false;
-  if (mode === 'clear') return cs.correctStreak >= 1;
-  // make it stick: needs 2 consecutive correct if ever wrong, else 1
-  if (mode === 'stick') return cs.wrongEver ? cs.correctStreak >= 2 : cs.correctStreak >= 1;
-  return false;
+  const cs = cellStats[key];
+  const needed = cs.wrongEver ? repsNeeded : 1;
+  return cs.correctStreak >= needed;
 }
 
 function submitAnswer() {
@@ -429,11 +474,13 @@ function submitAnswer() {
       }
       if (mode !== 'endless' && retiredCount >= TOTAL) { showComplete(); return; }
     } else {
-      // make it stick: got it right once after being wrong — coming back one more time
-      if (mode === 'stick' && cs.wrongEver && cs.correctStreak === 1) {
-        weights[current.key] = 4;
+      if (mode === 'stick' && cs.wrongEver && cs.correctStreak < repsNeeded) {
+        const remaining = repsNeeded - cs.correctStreak;
         priorityQueue = priorityQueue.filter(k => k !== current.key);
-        fb.textContent = '✓ Correct! Answer it right once more to clear it.';
+        weights[current.key] = 4;
+        fb.textContent = remaining === 1
+          ? '✓ Correct! Answer it right once more to clear it.'
+          : `✓ Correct! Answer it right ${remaining} more times to clear it.`;
         fb.className = 'feedback ok2';
       } else {
         if (stats.streak > 0 && stats.streak % 10 === 0) {
@@ -453,11 +500,9 @@ function submitAnswer() {
     fb.className = 'feedback bad';
     stats.wrong++; stats.streak = 0;
     cs.wrong++; cs.wrongEver = true; cs.correctStreak = 0;
-    // Insert into priority queue at position 1-2 (after 1-2 other questions max)
     const insertAt = Math.floor(Math.random() * 2) + 1;
-    const insertPos = Math.min(insertAt, priorityQueue.length);
-    priorityQueue.splice(insertPos, 0, current.key);
-    weights[current.key] = 3; // keep moderate weight as fallback
+    priorityQueue.splice(Math.min(insertAt, priorityQueue.length), 0, current.key);
+    weights[current.key] = 3;
   }
   updateStats();
 }
@@ -474,7 +519,6 @@ function showComplete() {
   document.getElementById('c-wrong').textContent = stats.wrong;
   document.getElementById('c-streak').textContent = stats.bestStreak;
   document.getElementById('complete-sub').textContent = `You cleared all ${TOTAL} facts in ${fmtTime(seconds)}!`;
-
   const wrongKeys = Object.entries(cellStats)
     .filter(([k, cs]) => cs.wrong > 0)
     .sort((a, b) => b[1].wrong - a[1].wrong);
@@ -500,7 +544,6 @@ function updateStats() {
   document.getElementById('s-correct').textContent = stats.correct;
   document.getElementById('s-wrong').textContent = stats.wrong;
   document.getElementById('s-streak').textContent = stats.streak;
-
   if (mode !== 'endless') {
     const remaining = TOTAL - retiredCount;
     const pct = Math.round((retiredCount / TOTAL) * 100);
@@ -508,9 +551,6 @@ function updateStats() {
     document.getElementById('progress-pct').textContent = `${pct}%`;
     document.getElementById('progress-fill').style.width = `${pct}%`;
   }
-
-  // "Coming back soon" — facts with high weight that haven't been cleared and still need work
-  // For stick mode: only show if correctStreak === 0 (not already got right once waiting for second)
   const trouble = Object.entries(weights)
     .filter(([k, w]) => {
       if (retired[k]) return false;
@@ -519,7 +559,6 @@ function updateStats() {
       return true;
     })
     .sort((a, b) => b[1] - a[1]).slice(0, 8);
-
   const pills = document.getElementById('trouble-pills');
   const title = document.getElementById('trouble-title');
   pills.innerHTML = '';
@@ -577,7 +616,7 @@ function shareResults() {
   const month = now.toLocaleString('en-GB', { month: 'short' });
   const time = now.toLocaleString('en-GB', { hour: 'numeric', minute: '2-digit', hour12: true }).toUpperCase();
   const dateStr = `${day} ${month} · ${time}`;
-  const modeNames = { stick: 'Make it stick', clear: 'Clear the board', endless: 'Endless' };
+  const modeNames = { stick: 'Make it stick', endless: 'Endless' };
   const perfect = stats.wrong === 0 ? ' Perfect score! 🌟' : '';
   const text = [
     `🎉 Times table challenge`,
@@ -591,18 +630,10 @@ function shareResults() {
     '',
     'https://games.meepity.net/multiplication.html',
   ].join('\n');
-
   const btn = document.getElementById('share-btn');
   const label = document.getElementById('share-label');
-  const reset = () => {
-    btn.classList.remove('copied');
-    label.textContent = 'Share results';
-  };
-  const confirm = () => {
-    btn.classList.add('copied');
-    label.textContent = 'Copied!';
-    setTimeout(reset, 2000);
-  };
+  const reset = () => { btn.classList.remove('copied'); label.textContent = 'Share results'; };
+  const confirm = () => { btn.classList.add('copied'); label.textContent = 'Copied!'; setTimeout(reset, 2000); };
   navigator.clipboard.writeText(text).then(confirm).catch(() => {
     const ta = document.createElement('textarea');
     ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
@@ -612,9 +643,8 @@ function shareResults() {
   });
 }
 
-function openModeInfo() { document.getElementById('mode-info-modal').classList.add('open'); }
-function closeModeInfo() { document.getElementById('mode-info-modal').classList.remove('open'); }
-
+function openSettings() { document.getElementById('settings-modal').classList.add('open'); }
+function closeSettings() { document.getElementById('settings-modal').classList.remove('open'); }
 function openStats() {
   renderGrid();
   if (!paused && !gameComplete) { pausedBeforeStats = true; setPaused(true); }
@@ -631,7 +661,7 @@ function doRestart() {
   document.getElementById('confirm-modal').classList.remove('open');
   initData();
   stats = { correct: 0, wrong: 0, streak: 0, bestStreak: 0 };
-  seconds = 0; retiredCount = 0; gameComplete = false; pausedBeforeStats = false; priorityQueue = [];
+  seconds = 0; retiredCount = 0; gameComplete = false; pausedBeforeStats = false;
   document.getElementById('timer').textContent = '0:00';
   document.getElementById('game-area').style.display = '';
   document.getElementById('complete-area').style.display = 'none';
@@ -657,12 +687,14 @@ function renderGrid() {
       const td = document.createElement('td');
       td.textContent = a * b;
       if (retired[key]) {
-        td.className = 'cell-retired'; td.title = `${a}×${b}: done`;
+        td.className = 'cell-retired'; td.title = `${a}×${b}: ${cs.correct} correct, ${cs.wrong} wrong`;
       } else if (cs.correct === 0 && cs.wrong === 0) {
         td.className = 'cell-unseen';
       } else {
         seen++;
-        td.className = cs.wrong === 0 ? 'cell-correct' : 'cell-wrong';
+        if (cs.wrong === 0) td.className = 'cell-correct';
+        else if (cs.correct === 0) td.className = 'cell-wrong';
+        else td.className = 'cell-mixed';
         td.title = `${a}×${b}: ${cs.correct} correct, ${cs.wrong} wrong`;
       }
       row.appendChild(td);
@@ -670,18 +702,24 @@ function renderGrid() {
     table.appendChild(row);
   }
   const summary = document.getElementById('grid-summary');
-  summary.innerHTML = retiredCount === 0 && seen === 0
-    ? 'No questions answered yet — get practicing!'
-    : `<span>${retiredCount}</span> retired · <span>${seen}</span> to revisit · <span>${TOTAL - retiredCount - seen}</span> not seen`;
+  const notSeen = TOTAL - retiredCount - seen;
+  if (retiredCount === 0 && seen === 0) {
+    summary.innerHTML = 'No questions answered yet — get practicing!';
+  } else if (mode === 'endless') {
+    summary.innerHTML = `<span>${notSeen}</span> not seen · <span>${seen}</span> to train up`;
+  } else {
+    summary.innerHTML = `<span>${notSeen}</span> not seen · <span>${seen}</span> to revisit · <span>${retiredCount}</span> retired`;
+  }
 }
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
-    if (document.getElementById('mode-info-modal').classList.contains('open')) { closeModeInfo(); return; }
+    if (document.getElementById('settings-modal').classList.contains('open')) { closeSettings(); return; }
     if (document.getElementById('stats-modal').classList.contains('open')) { closeStats(); return; }
     cancelRestart(); return;
   }
   if (e.key !== 'Enter') return;
+  if (document.getElementById('settings-modal').classList.contains('open')) return;
   if (document.getElementById('stats-modal').classList.contains('open')) return;
   if (document.getElementById('confirm-modal').classList.contains('open')) return;
   if (paused || gameComplete) return;
@@ -689,6 +727,7 @@ document.addEventListener('keydown', e => {
   else nextQuestion();
 });
 
+adjReps(0);
 startTimer();
 nextQuestion();
 updateStats();
