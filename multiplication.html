@@ -16,7 +16,10 @@
   .icon-btn { background: #fff; border: 1px solid #c8c7bf; border-radius: 8px; padding: 5px 10px; cursor: pointer; color: #5f5e5a; font-size: 15px; display: flex; align-items: center; gap: 5px; font-family: inherit; white-space: nowrap; }
   .icon-btn:hover { background: #f1efe8; }
   .mode-row { display: flex; align-items: center; gap: 10px; margin-bottom: 1.25rem; }
+  .mode-label-wrap { display: flex; align-items: center; gap: 5px; }
   .mode-label { font-size: 13px; color: #888780; font-weight: 500; white-space: nowrap; }
+  .info-btn { background: none; border: none; cursor: pointer; color: #b4b2a9; font-size: 15px; display: flex; align-items: center; padding: 0; line-height: 1; }
+  .info-btn:hover { color: #5f5e5a; }
   .mode-options { display: flex; border: 1px solid #c8c7bf; border-radius: 8px; overflow: hidden; flex: 1; }
   .mode-option { flex: 1; padding: 6px 8px; font-size: 13px; text-align: center; cursor: pointer; color: #5f5e5a; background: #fff; border: none; border-right: 1px solid #c8c7bf; font-family: inherit; white-space: nowrap; transition: background 0.15s; }
   .mode-option:last-child { border-right: none; }
@@ -101,6 +104,10 @@
   .share-btn { font-size: 16px; padding: 0.6rem 1.75rem; border-radius: 8px; border: 1px solid #c8c7bf; background: #fff; cursor: pointer; color: #1a1a18; font-family: inherit; display: inline-flex; align-items: center; gap: 6px; transition: background 0.15s; }
   .share-btn:hover { background: #f1efe8; }
   .share-btn.copied { background: #D6EDBB; border-color: #2D7D0A; color: #1a4d04; }
+  .mode-info-section { margin-bottom: 1.25rem; }
+  .mode-info-section:last-child { margin-bottom: 0; }
+  .mode-info-name { font-size: 15px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
+  .mode-info-desc { font-size: 14px; color: #5f5e5a; line-height: 1.55; }
   .version { font-size: 11px; color: #b4b2a9; text-align: right; padding: 1rem 0 0.25rem; }
 </style>
 </head>
@@ -126,7 +133,12 @@
   </div>
 
   <div class="mode-row">
-    <span class="mode-label">Mode</span>
+    <div class="mode-label-wrap">
+      <span class="mode-label">Mode</span>
+      <button class="info-btn" onclick="openModeInfo()" aria-label="About game modes">
+        <i class="ti ti-info-circle" aria-hidden="true"></i>
+      </button>
+    </div>
     <div class="mode-options">
       <button class="mode-option active" id="mode-stick" onclick="setMode('stick')">Make it stick</button>
       <button class="mode-option" id="mode-clear" onclick="setMode('clear')">Clear the board</button>
@@ -199,7 +211,28 @@
 </div>
 
 <div style="max-width:620px;margin:0 auto;">
-  <div class="version">v3.0</div>
+  <div class="version">v3.1</div>
+</div>
+
+<div class="modal-backdrop" id="mode-info-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <p class="modal-title">How modes work</p>
+      <button class="close-btn" onclick="closeModeInfo()"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="mode-info-section">
+      <div class="mode-info-name">Make it stick</div>
+      <div class="mode-info-desc">Answer facts you got wrong correctly twice in a row to clear them. Game ends when you clear all 121 facts.</div>
+    </div>
+    <div class="mode-info-section">
+      <div class="mode-info-name">Clear the board</div>
+      <div class="mode-info-desc">Answer a fact correctly once to clear it. Game ends when you clear all 121 facts.</div>
+    </div>
+    <div class="mode-info-section">
+      <div class="mode-info-name">Endless</div>
+      <div class="mode-info-desc">The game keeps going as long as you want. Facts you get wrong come back more often.</div>
+    </div>
+  </div>
 </div>
 
 <div class="modal-backdrop" id="stats-modal">
@@ -579,6 +612,9 @@ function shareResults() {
   });
 }
 
+function openModeInfo() { document.getElementById('mode-info-modal').classList.add('open'); }
+function closeModeInfo() { document.getElementById('mode-info-modal').classList.remove('open'); }
+
 function openStats() {
   renderGrid();
   if (!paused && !gameComplete) { pausedBeforeStats = true; setPaused(true); }
@@ -641,6 +677,7 @@ function renderGrid() {
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
+    if (document.getElementById('mode-info-modal').classList.contains('open')) { closeModeInfo(); return; }
     if (document.getElementById('stats-modal').classList.contains('open')) { closeStats(); return; }
     cancelRestart(); return;
   }
