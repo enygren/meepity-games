@@ -48,41 +48,52 @@
   .feedback.ok2 { color: #1a5fa8; font-size: 15px; }
   .feedback.bad { color: #8B1A1A; }
   .feedback.streak { color: #1a4d04; font-size: 24px; font-weight: 700; }
-  .paused-overlay { display: none; position: absolute; inset: 0; background: rgba(0,0,0,0.45); border-radius: 12px; align-items: center; justify-content: center; z-index: 5; }
+  .paused-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); align-items: center; justify-content: center; z-index: 50; cursor: pointer; }
   .paused-overlay.open { display: flex; }
-  .paused-label { color: #fff; font-size: 22px; font-weight: 500; }
+  .paused-label { color: #fff; font-size: 26px; font-weight: 500; pointer-events: none; }
+  .paused-sub { color: rgba(255,255,255,0.65); font-size: 14px; margin-top: 8px; pointer-events: none; }
   .trouble-section { margin-top: 1.25rem; }
   .trouble-title { font-size: 13px; color: #888780; margin-bottom: 8px; }
   .trouble-pills { display: flex; flex-wrap: wrap; gap: 6px; }
   .pill { background: #F5E6E0; border-radius: 20px; padding: 4px 12px; font-size: 13px; color: #7A2310; }
   .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); align-items: center; justify-content: center; z-index: 100; padding: 1rem; }
   .modal-backdrop.open { display: flex; }
-  .modal { background: #fff; border-radius: 12px; border: 1px solid #c8c7bf; padding: 1.5rem; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; }
+  .modal { background: #fff; border-radius: 12px; border: 1px solid #c8c7bf; padding: 1.5rem; width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; }
   .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
-  .modal-title { font-size: 16px; font-weight: 600; color: #1a1a18; }
+  .modal-title { font-size: 16px; font-weight: 500; color: #1a1a18; }
   .close-btn { background: none; border: none; cursor: pointer; color: #888780; font-size: 20px; padding: 2px; display: flex; align-items: center; }
   .close-btn:hover { color: #1a1a18; }
-  .setting-group { display: flex; flex-direction: column; border: 1px solid #c8c7bf; border-radius: 8px; overflow: hidden; }
-  .setting-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 14px; background: #f1efe8; }
+  .section-label { font-size: 11px; font-weight: 500; color: #888780; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.6rem; }
+  .setting-group { border: 1px solid #c8c7bf; border-radius: 8px; overflow: hidden; margin-bottom: 1.25rem; }
+  .setting-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 12px 14px; background: #f1efe8; }
+  .setting-row + .setting-row { border-top: 1px solid #d3d1c7; }
   .setting-sublabel { font-size: 13px; color: #5f5e5a; line-height: 1.5; }
   .stepper { display: flex; align-items: center; border: 1px solid #c8c7bf; border-radius: 8px; overflow: hidden; flex-shrink: 0; background: #fff; }
   .stepper-btn { background: transparent; border: none; width: 32px; height: 32px; font-size: 18px; cursor: pointer; color: #1a1a18; display: flex; align-items: center; justify-content: center; font-family: inherit; }
   .stepper-btn:hover:not(:disabled) { background: #f1efe8; }
   .stepper-btn:disabled { color: #c8c7bf; cursor: default; }
   .stepper-val { font-size: 15px; font-weight: 500; color: #1a1a18; width: 32px; text-align: center; border-left: 1px solid #c8c7bf; border-right: 1px solid #c8c7bf; line-height: 32px; }
+  .settings-divider { border: none; border-top: 1px solid #e8e6e0; margin: 1.25rem 0; }
+  .tables-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-bottom: 6px; }
+  .table-chip { border-radius: 8px; padding: 6px 4px; font-size: 13px; font-weight: 500; text-align: center; cursor: pointer; border: 1px solid #c8c7bf; background: #fff; color: #888780; user-select: none; transition: background 0.12s; }
+  .table-chip.on { background: #D6EDBB; border-color: #2D7D0A; color: #1a4d04; }
+  .table-chip:hover:not(.on) { background: #f1efe8; }
+  .chip-hint { font-size: 12px; color: #b4b2a9; }
   .grid-summary { font-size: 13px; color: #888780; margin-bottom: 12px; }
   .grid-summary span { font-weight: 500; color: #1a1a18; }
   .grid-wrap { overflow-x: auto; }
-  .times-grid { border-collapse: collapse; font-size: 12px; width: 100%; }
-  .times-grid th { color: #888780; font-weight: 500; padding: 4px 2px; text-align: center; font-size: 11px; }
-  .times-grid td { width: 40px; height: 36px; text-align: center; border: 1px solid #e8e6e0; border-radius: 3px; font-size: 12px; font-weight: 600; cursor: default; }
-  .cell-unseen  { background: #f1efe8; color: #b4b2a9; }
-  .cell-correct { background: #D6EDBB; color: #1a4d04; }
-  .cell-wrong   { background: #F5C6C6; color: #5C0A0A; }
-  .cell-mixed   { background: #FAD9A0; color: #5C3100; }
-  .cell-retired { background: #D6EDBB; color: #1a4d04; opacity: 0.45; }
-  .grid-legend { display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap; align-items: center; }
-  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #888780; }
+  .times-grid { border-collapse: collapse; font-size: 11px; }
+  .times-grid th { color: #888780; font-weight: 500; padding: 3px 2px; text-align: center; font-size: 11px; min-width: 30px; }
+  .times-grid th.excl-header { color: #b4b2a9; opacity: 0.4; }
+  .times-grid td { width: 34px; height: 30px; text-align: center; border: 1px solid #e8e6e0; border-radius: 3px; font-size: 11px; font-weight: 600; cursor: default; }
+  .cell-unseen   { background: #f1efe8; color: #b4b2a9; }
+  .cell-correct  { background: #D6EDBB; color: #1a4d04; }
+  .cell-wrong    { background: #F5C6C6; color: #5C0A0A; }
+  .cell-mixed    { background: #FAD9A0; color: #5C3100; }
+  .cell-retired  { background: #BFD9F5; color: #0C447C; border-color: #85B7EB; }
+  .cell-excluded { background: transparent; color: #d3d1c7; border-color: transparent; }
+  .grid-legend { display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; align-items: center; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #888780; }
   .legend-swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid #d3d1c7; flex-shrink: 0; }
   .confirm-box { background: #fff; border-radius: 12px; border: 1px solid #d3d1c7; padding: 1.5rem 2rem; text-align: center; width: 100%; max-width: 340px; }
   .confirm-box p { margin: 0 0 1rem; font-size: 16px; color: #1a1a18; }
@@ -96,7 +107,8 @@
   .complete-card { background: #fff; border: 1px solid #d3d1c7; border-radius: 12px; padding: 2.5rem 1.5rem; text-align: center; }
   .complete-emoji { font-size: 48px; margin-bottom: 0.75rem; }
   .complete-title { font-size: 26px; font-weight: 500; color: #1a1a18; margin-bottom: 0.5rem; }
-  .complete-sub { font-size: 15px; color: #888780; margin-bottom: 1.5rem; }
+  .complete-sub { font-size: 15px; color: #888780; margin-bottom: 0.4rem; }
+  .complete-tables { font-size: 13px; color: #b4b2a9; margin-bottom: 1.5rem; }
   .complete-stats { display: flex; gap: 1rem; justify-content: center; margin-bottom: 1.75rem; flex-wrap: wrap; }
   .complete-stat { background: #f1efe8; border-radius: 8px; padding: 0.75rem 1.25rem; }
   .complete-stat-val { font-size: 22px; font-weight: 500; color: #1a1a18; }
@@ -133,7 +145,7 @@
         <i class="ti ti-chart-bar" aria-hidden="true"></i> Stats
       </button>
       <button class="icon-btn" id="settings-btn" onclick="openSettings()">
-        <i class="ti ti-settings" aria-hidden="true"></i> Settings
+        <i class="ti ti-settings" aria-hidden="true"></i>
       </button>
     </div>
   </div>
@@ -153,7 +165,7 @@
 
   <div class="progress-bar-wrap" id="progress-wrap">
     <div class="progress-label">
-      <span id="progress-text">121 remaining</span>
+      <span id="progress-text">loading...</span>
       <span id="progress-pct">0%</span>
     </div>
     <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
@@ -165,13 +177,10 @@
       <div class="question-card">
         <div class="question" id="question">…</div>
         <div class="input-row">
-          <input id="answer-input" type="number" min="1" max="144" placeholder="?" autocomplete="off" />
+          <input id="answer-input" type="number" min="1" max="169" placeholder="?" autocomplete="off" />
           <button id="submit-btn" onclick="submitAnswer()">Check</button>
         </div>
         <div class="feedback" id="feedback"></div>
-      </div>
-      <div class="paused-overlay" id="paused-overlay">
-        <span class="paused-label">Paused</span>
       </div>
     </div>
     <div class="trouble-section">
@@ -187,6 +196,7 @@
         <div class="complete-emoji">🎉</div>
         <div class="complete-title">All done!</div>
         <div class="complete-sub" id="complete-sub"></div>
+        <div class="complete-tables" id="complete-tables"></div>
         <div class="complete-stats">
           <div class="complete-stat"><div class="complete-stat-val" id="c-time">—</div><div class="complete-stat-lbl">Time</div></div>
           <div class="complete-stat"><div class="complete-stat-val" id="c-correct">—</div><div class="complete-stat-lbl">Correct</div></div>
@@ -209,31 +219,54 @@
   </div>
 </div>
 
-<div style="max-width:620px;margin:0 auto;">
-  <div class="version">v3.4</div>
+<!-- Full-screen pause overlay — click anywhere to resume -->
+<div class="paused-overlay" id="paused-overlay" onclick="resumeFromPause()">
+  <div style="text-align:center;">
+    <div class="paused-label">Paused</div>
+    <div class="paused-sub">Click anywhere to resume</div>
+  </div>
 </div>
 
+<div style="max-width:620px;margin:0 auto;">
+  <div class="version">v3.7</div>
+</div>
+
+<!-- Settings modal -->
 <div class="modal-backdrop" id="settings-modal">
   <div class="modal">
     <div class="modal-header">
       <p class="modal-title">Settings</p>
       <button class="close-btn" onclick="closeSettings()"><i class="ti ti-x"></i></button>
     </div>
+    <div class="section-label">Repetitions</div>
     <div class="setting-group">
       <div class="setting-row">
-        <div class="setting-sublabel">Number of times a wrong fact must be answered correctly before it is cleared</div>
+        <div class="setting-sublabel">Number of times to practice each fact</div>
         <div class="stepper">
-          <button class="stepper-btn" id="btn-minus" onclick="adjReps(-1)">−</button>
+          <button class="stepper-btn" id="practice-minus" onclick="adjPractice(-1)">−</button>
+          <div class="stepper-val" id="practice-val">1</div>
+          <button class="stepper-btn" id="practice-plus" onclick="adjPractice(1)">+</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-sublabel">Consecutive correct answers needed after a mistake</div>
+        <div class="stepper">
+          <button class="stepper-btn" id="reps-minus" onclick="adjReps(-1)">−</button>
           <div class="stepper-val" id="rep-val">2</div>
-          <button class="stepper-btn" id="btn-plus" onclick="adjReps(1)">+</button>
+          <button class="stepper-btn" id="reps-plus" onclick="adjReps(1)">+</button>
         </div>
       </div>
     </div>
+    <hr class="settings-divider">
+    <div class="section-label">Practice these tables</div>
+    <div class="tables-grid" id="tables-grid"></div>
+    <div class="chip-hint" id="chip-hint"></div>
   </div>
 </div>
 
+<!-- Stats modal -->
 <div class="modal-backdrop" id="stats-modal">
-  <div class="modal" style="max-width:560px;">
+  <div class="modal" style="max-width:580px;">
     <div class="modal-header">
       <p class="modal-title">Times table progress</p>
       <button class="close-btn" onclick="closeStats()"><i class="ti ti-x"></i></button>
@@ -241,14 +274,17 @@
     <div class="grid-summary" id="grid-summary">No questions answered yet.</div>
     <div class="grid-wrap"><table class="times-grid" id="times-grid"></table></div>
     <div class="grid-legend">
-      <div class="legend-item"><div class="legend-swatch" style="background:#D6EDBB;"></div> Correct</div>
-      <div class="legend-item"><div class="legend-swatch" style="background:#FAD9A0;"></div> Mixed</div>
-      <div class="legend-item"><div class="legend-swatch" style="background:#F5C6C6;"></div> Wrong</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#BFD9F5;border-color:#85B7EB;"></div> Retired</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#D6EDBB;border-color:#97C459;"></div> Correct</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#FAD9A0;border-color:#EF9F27;"></div> Mixed</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#F5C6C6;border-color:#F09595;"></div> Wrong</div>
       <div class="legend-item"><div class="legend-swatch" style="background:#f1efe8;"></div> Not seen</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:transparent;border-color:#d3d1c7;"></div> Not practicing</div>
     </div>
   </div>
 </div>
 
+<!-- Confirm restart -->
 <div class="modal-backdrop" id="confirm-modal">
   <div class="confirm-box">
     <p>Restart and clear all progress?</p>
@@ -260,23 +296,125 @@
 </div>
 
 <script>
-const TOTAL = 121;
+const ALL_TABLES = [2,3,4,5,6,7,8,9,10,11,12];
+let activeTables = new Set([2,3,4,5,6,7,8,9,10,11,12]);
+
+function isFactActive(a, b) {
+  return ALL_TABLES.includes(a) && ALL_TABLES.includes(b) && (activeTables.has(a) || activeTables.has(b));
+}
+
+function calcTotal() {
+  let count = 0;
+  for (const a of ALL_TABLES)
+    for (const b of ALL_TABLES)
+      if (activeTables.has(a) || activeTables.has(b)) count++;
+  return count;
+}
+
 let endless = false;
-let repsNeeded = 2;
+let repsNeeded = 2;    // consecutive correct after a mistake
+let practiceCount = 1; // times each fact must be answered correctly to retire
 
 let weights = {}, cellStats = {}, retired = {};
 let priorityQueue = [];
+let TOTAL = 0;
+let retiredCount = 0;
+
+function getActiveKeys() {
+  const keys = [];
+  for (const a of ALL_TABLES)
+    for (const b of ALL_TABLES)
+      if (activeTables.has(a) || activeTables.has(b)) keys.push(`${a}x${b}`);
+  return keys;
+}
 
 function initData() {
   weights = {}; cellStats = {}; retired = {}; priorityQueue = [];
-  for (let a = 2; a <= 12; a++)
-    for (let b = 2; b <= 12; b++) {
-      weights[`${a}x${b}`] = 1;
-      cellStats[`${a}x${b}`] = { correct: 0, wrong: 0, correctStreak: 0, wrongEver: false };
-      retired[`${a}x${b}`] = false;
+  for (const a of ALL_TABLES)
+    for (const b of ALL_TABLES) {
+      const key = `${a}x${b}`;
+      weights[key] = isFactActive(a, b) ? 1 : 0;
+      cellStats[key] = { correct: 0, wrong: 0, correctStreak: 0, wrongEver: false, totalCorrect: 0 };
+      retired[key] = false;
     }
+  TOTAL = calcTotal();
+  retiredCount = 0;
 }
-initData();
+
+function fmtTables() {
+  const sorted = [...activeTables].sort((a,b) => a-b);
+  if (sorted.length === 11) return '×2–×12';
+  const ranges = [];
+  let start = sorted[0], end = sorted[0];
+  for (let i = 1; i < sorted.length; i++) {
+    if (sorted[i] === end + 1) { end = sorted[i]; }
+    else { ranges.push(start === end ? `×${start}` : `×${start}–×${end}`); start = end = sorted[i]; }
+  }
+  ranges.push(start === end ? `×${start}` : `×${start}–×${end}`);
+  return ranges.join(', ');
+}
+
+function buildTablesGrid() {
+  const grid = document.getElementById('tables-grid');
+  grid.innerHTML = '';
+  for (const t of ALL_TABLES) {
+    const chip = document.createElement('div');
+    chip.className = 'table-chip' + (activeTables.has(t) ? ' on' : '');
+    chip.textContent = `× ${t}`;
+    chip.dataset.t = t;
+    chip.onclick = () => {
+      if (activeTables.has(t) && activeTables.size === 1) return;
+      if (activeTables.has(t)) activeTables.delete(t);
+      else activeTables.add(t);
+      chip.classList.toggle('on', activeTables.has(t));
+      updateChipHint();
+      recalcAfterTableChange();
+    };
+    grid.appendChild(chip);
+  }
+  updateChipHint();
+}
+
+function updateChipHint() {
+  document.getElementById('chip-hint').textContent = `Tables selected: ${fmtTables()}`;
+}
+
+// Recalculate TOTAL and retired facts when tables change
+function recalcAfterTableChange() {
+  TOTAL = calcTotal();
+  retiredCount = 0;
+  for (const a of ALL_TABLES)
+    for (const b of ALL_TABLES) {
+      const key = `${a}x${b}`;
+      const active = isFactActive(a, b);
+      if (!active) {
+        weights[key] = 0;
+        retired[key] = false;
+      } else {
+        if (retired[key]) { retiredCount++; }
+        else if (weights[key] === 0) { weights[key] = 1; }
+      }
+    }
+  priorityQueue = priorityQueue.filter(k => {
+    const [a, b] = k.split('x').map(Number);
+    return isFactActive(a, b);
+  });
+  updateStats();
+}
+
+function adjPractice(d) {
+  practiceCount = Math.min(5, Math.max(1, practiceCount + d));
+  document.getElementById('practice-val').textContent = practiceCount;
+  document.getElementById('practice-minus').disabled = practiceCount === 1;
+  document.getElementById('practice-plus').disabled = practiceCount === 5;
+}
+
+function adjReps(d) {
+  repsNeeded = Math.min(5, Math.max(1, repsNeeded + d));
+  document.getElementById('rep-val').textContent = repsNeeded;
+  document.getElementById('reps-minus').disabled = repsNeeded === 1;
+  document.getElementById('reps-plus').disabled = repsNeeded === 5;
+}
 
 let stats = { correct: 0, wrong: 0, streak: 0, bestStreak: 0 };
 let current = null;
@@ -285,8 +423,8 @@ let seconds = 0;
 let timerInterval = null;
 let paused = false;
 let pausedBeforeStats = false;
+let pausedBeforeSettings = false;
 let confettiRaf = null;
-let retiredCount = 0;
 let gameComplete = false;
 
 function startTimer() {
@@ -304,38 +442,19 @@ function fmtTime(s) {
   return `${Math.floor(s/60)}:${(s%60).toString().padStart(2,'0')}`;
 }
 
-function adjReps(d) {
-  repsNeeded = Math.min(3, Math.max(1, repsNeeded + d));
-  document.getElementById('rep-val').textContent = repsNeeded;
-  document.getElementById('btn-minus').disabled = repsNeeded === 1;
-  document.getElementById('btn-plus').disabled = repsNeeded === 3;
-}
-
 function toggleEndless() {
   endless = !endless;
   document.getElementById('endless-toggle').classList.toggle('on', endless);
   document.getElementById('progress-wrap').style.display = endless ? 'none' : '';
   document.getElementById('settings-btn').classList.toggle('disabled', endless);
-
-  // Clear ok2 feedback if switching to endless
   const fb = document.getElementById('feedback');
-  if (endless && fb.classList.contains('ok2')) {
-    fb.textContent = '✓ Correct!';
-    fb.className = 'feedback ok';
-  }
-
-  // Close settings if open
   if (endless) closeSettings();
-
-  // Switching endless off — recalculate retired facts
   if (!endless) {
     retiredCount = 0;
-    for (const key of Object.keys(cellStats)) {
+    for (const key of getActiveKeys()) {
       const cs = cellStats[key];
-      const needed = cs.wrongEver ? repsNeeded : 1;
-      if (cs.correctStreak >= needed) {
-        retired[key] = true;
-        weights[key] = 0;
+      if (shouldRetireKey(key, cs)) {
+        retired[key] = true; weights[key] = 0;
         priorityQueue = priorityQueue.filter(k => k !== key);
         retiredCount++;
       } else {
@@ -345,6 +464,17 @@ function toggleEndless() {
     if (retiredCount >= TOTAL) { showComplete(); return; }
   }
   updateStats();
+}
+
+// Core retirement logic
+// A fact retires when:
+// - totalCorrect >= practiceCount (overall practice requirement met)
+// - AND if it was ever wrong, correctStreak >= repsNeeded
+function shouldRetireKey(key, cs) {
+  if (endless) return false;
+  if (cs.totalCorrect < practiceCount) return false;
+  if (cs.wrongEver && cs.correctStreak < repsNeeded) return false;
+  return true;
 }
 
 function setPaused(val) {
@@ -365,27 +495,31 @@ function setPaused(val) {
   }
 }
 
-function togglePause() {
-  pausedBeforeStats = false;
-  setPaused(!paused);
+function togglePause() { pausedBeforeStats = false; pausedBeforeSettings = false; setPaused(!paused); }
+
+function resumeFromPause() {
+  if (!paused) return;
+  pausedBeforeStats = false; pausedBeforeSettings = false;
+  setPaused(false);
 }
 
-function activeKeys() {
-  return Object.keys(weights).filter(k => !retired[k]);
+function activePoolKeys() {
+  return getActiveKeys().filter(k => !retired[k]);
 }
 
 function pickQuestion() {
   while (priorityQueue.length > 0) {
     const candidate = priorityQueue[0];
-    if (retired[candidate]) { priorityQueue.shift(); continue; }
-    if (current && candidate === current.key && activeKeys().filter(k => k !== candidate).length > 0) {
-      priorityQueue.shift();
-      priorityQueue.splice(1, 0, candidate);
-      break;
+    const [ca, cb] = candidate.split('x').map(Number);
+    if (retired[candidate] || !isFactActive(parseInt(candidate.split('x')[0]), parseInt(candidate.split('x')[1]))) {
+      priorityQueue.shift(); continue;
+    }
+    if (current && candidate === current.key && activePoolKeys().filter(k => k !== candidate).length > 0) {
+      priorityQueue.shift(); priorityQueue.splice(1, 0, candidate); break;
     }
     return priorityQueue.shift();
   }
-  const keys = activeKeys();
+  const keys = activePoolKeys();
   if (keys.length === 0) return null;
   const total = keys.reduce((s, k) => s + weights[k], 0);
   let r = Math.random() * total;
@@ -411,13 +545,6 @@ function nextQuestion() {
   inp.focus();
 }
 
-function shouldRetire(key) {
-  if (endless) return false;
-  const cs = cellStats[key];
-  const needed = cs.wrongEver ? repsNeeded : 1;
-  return cs.correctStreak >= needed;
-}
-
 function submitAnswer() {
   if (answered || paused) return;
   const inp = document.getElementById('answer-input');
@@ -433,47 +560,42 @@ function submitAnswer() {
     inp.classList.add('correct');
     stats.correct++; stats.streak++;
     if (stats.streak > stats.bestStreak) stats.bestStreak = stats.streak;
-    cs.correct++; cs.correctStreak++;
+    cs.correct++; cs.correctStreak++; cs.totalCorrect++;
 
-    if (shouldRetire(current.key)) {
-      retired[current.key] = true;
-      retiredCount++;
+    if (shouldRetireKey(current.key, cs)) {
+      retired[current.key] = true; retiredCount++;
       weights[current.key] = 0;
       priorityQueue = priorityQueue.filter(k => k !== current.key);
       if (stats.streak > 0 && stats.streak % 10 === 0) {
-        fb.textContent = `🎉 ${stats.streak} in a row!`;
-        fb.className = 'feedback streak';
+        fb.textContent = `🎉 ${stats.streak} in a row!`; fb.className = 'feedback streak';
         launchConfetti('confetti-canvas');
-      } else {
-        fb.textContent = '✓ Correct!';
-        fb.className = 'feedback ok';
-      }
+      } else { fb.textContent = '✓ Correct!'; fb.className = 'feedback ok'; }
       if (!endless && retiredCount >= TOTAL) { showComplete(); return; }
     } else {
-      if (!endless && cs.wrongEver && cs.correctStreak < repsNeeded) {
-        const remaining = repsNeeded - cs.correctStreak;
-        priorityQueue = priorityQueue.filter(k => k !== current.key);
+      // Figure out what still needs to happen
+      const practiceLeft = Math.max(0, practiceCount - cs.totalCorrect);
+      const streakLeft = cs.wrongEver ? Math.max(0, repsNeeded - cs.correctStreak) : 0;
+      const needsMorePractice = practiceLeft > 0;
+      const needsStreak = streakLeft > 0;
+
+      if (!endless && (needsStreak || needsMorePractice)) {
         weights[current.key] = 4;
-        fb.textContent = remaining === 1
-          ? '✓ Correct! Answer it right once more to clear it.'
-          : `✓ Correct! Answer it right ${remaining} more times to clear it.`;
-        fb.className = 'feedback ok2';
+        priorityQueue = priorityQueue.filter(k => k !== current.key);
+        if (stats.streak > 0 && stats.streak % 10 === 0) {
+          fb.textContent = `🎉 ${stats.streak} in a row!`; fb.className = 'feedback streak';
+          launchConfetti('confetti-canvas');
+        } else { fb.textContent = '✓ Correct!'; fb.className = 'feedback ok'; }
       } else {
         if (stats.streak > 0 && stats.streak % 10 === 0) {
-          fb.textContent = `🎉 ${stats.streak} in a row!`;
-          fb.className = 'feedback streak';
+          fb.textContent = `🎉 ${stats.streak} in a row!`; fb.className = 'feedback streak';
           launchConfetti('confetti-canvas');
-        } else {
-          fb.textContent = '✓ Correct!';
-          fb.className = 'feedback ok';
-        }
+        } else { fb.textContent = '✓ Correct!'; fb.className = 'feedback ok'; }
         weights[current.key] = Math.max(1, weights[current.key] - 0.3);
       }
     }
   } else {
     inp.classList.add('wrong');
-    fb.textContent = `✗ The answer is ${current.correct}`;
-    fb.className = 'feedback bad';
+    fb.textContent = `✗ The answer is ${current.correct}`; fb.className = 'feedback bad';
     stats.wrong++; stats.streak = 0;
     cs.wrong++; cs.wrongEver = true; cs.correctStreak = 0;
     const insertAt = Math.floor(Math.random() * 2) + 1;
@@ -495,8 +617,12 @@ function showComplete() {
   document.getElementById('c-wrong').textContent = stats.wrong;
   document.getElementById('c-streak').textContent = stats.bestStreak;
   document.getElementById('complete-sub').textContent = `You cleared all ${TOTAL} facts in ${fmtTime(seconds)}!`;
+  document.getElementById('complete-tables').textContent = `Tables practiced: ${fmtTables()}`;
   const wrongKeys = Object.entries(cellStats)
-    .filter(([k, cs]) => cs.wrong > 0)
+    .filter(([k, cs]) => {
+      const [a, b] = k.split('x').map(Number);
+      return cs.wrong > 0 && isFactActive(a, b);
+    })
     .sort((a, b) => b[1].wrong - a[1].wrong);
   const reviewSection = document.getElementById('wrong-review');
   const grid = document.getElementById('wrong-fact-grid');
@@ -510,9 +636,7 @@ function showComplete() {
       grid.appendChild(pill);
     });
     reviewSection.style.display = '';
-  } else {
-    reviewSection.style.display = 'none';
-  }
+  } else { reviewSection.style.display = 'none'; }
   setTimeout(() => launchConfetti('confetti-canvas-complete'), 100);
 }
 
@@ -529,8 +653,9 @@ function updateStats() {
   }
   const trouble = Object.entries(weights)
     .filter(([k, w]) => {
-      if (retired[k]) return false;
-      if (w < 3) return false;
+      if (retired[k] || w < 3) return false;
+      const [a, b] = k.split('x').map(Number);
+      if (!isFactActive(a, b)) return false;
       return cellStats[k].correctStreak === 0;
     })
     .sort((a, b) => b[1] - a[1]).slice(0, 8);
@@ -542,8 +667,7 @@ function updateStats() {
     trouble.forEach(([k]) => {
       const [a, b] = k.split('x');
       const p = document.createElement('span');
-      p.className = 'pill';
-      p.textContent = `${a} × ${b}`;
+      p.className = 'pill'; p.textContent = `${a} × ${b}`;
       pills.appendChild(p);
     });
   } else { title.textContent = ''; }
@@ -591,12 +715,13 @@ function shareResults() {
   const month = now.toLocaleString('en-GB', { month: 'short' });
   const time = now.toLocaleString('en-GB', { hour: 'numeric', minute: '2-digit', hour12: true }).toUpperCase();
   const dateStr = `${day} ${month} · ${time}`;
-  const modeName = endless ? 'Endless' : 'Standard';
+  const modeName = endless ? 'Endless' : 'Sprint';
   const perfect = stats.wrong === 0 ? ' Perfect score! 🌟' : '';
   const text = [
     `🎉 Times table challenge`,
     `${modeName} — ${dateStr}`,
     `Cleared all ${TOTAL} facts!${perfect}`,
+    `📚 Tables: ${fmtTables()}`,
     '',
     `⏱  ${fmtTime(seconds)}`,
     `✓  ${stats.correct} correct`,
@@ -620,9 +745,30 @@ function shareResults() {
 
 function openSettings() {
   if (endless) return;
+  if (!paused && !gameComplete) { pausedBeforeSettings = true; setPaused(true); }
   document.getElementById('settings-modal').classList.add('open');
 }
-function closeSettings() { document.getElementById('settings-modal').classList.remove('open'); }
+function closeSettings() {
+  document.getElementById('settings-modal').classList.remove('open');
+  if (pausedBeforeSettings) { pausedBeforeSettings = false; setPaused(false); }
+  // If current question is no longer in the active pool, replace it
+  if (current && !isFactActive(current.a, current.b)) {
+    const inp = document.getElementById('answer-input');
+    inp.value = ''; inp.className = ''; inp.disabled = false;
+    document.getElementById('feedback').textContent = '';
+    document.getElementById('feedback').className = 'feedback';
+    document.getElementById('submit-btn').textContent = 'Check';
+    document.getElementById('submit-btn').onclick = submitAnswer;
+    document.getElementById('submit-btn').disabled = false;
+    answered = false;
+    const key = pickQuestion();
+    if (!key) { if (!endless) showComplete(); return; }
+    const [a, b] = key.split('x').map(Number);
+    current = { key, a, b, correct: a * b };
+    document.getElementById('question').textContent = `${a} × ${b} = ?`;
+    inp.focus();
+  }
+}
 
 function openStats() {
   renderGrid();
@@ -634,13 +780,14 @@ function closeStats() {
   document.getElementById('stats-modal').classList.remove('open');
   if (pausedBeforeStats) { pausedBeforeStats = false; setPaused(false); }
 }
+
 function askRestart() { document.getElementById('confirm-modal').classList.add('open'); }
 function cancelRestart() { document.getElementById('confirm-modal').classList.remove('open'); }
 function doRestart() {
   document.getElementById('confirm-modal').classList.remove('open');
   initData();
   stats = { correct: 0, wrong: 0, streak: 0, bestStreak: 0 };
-  seconds = 0; retiredCount = 0; gameComplete = false; pausedBeforeStats = false;
+  seconds = 0; gameComplete = false; pausedBeforeStats = false; pausedBeforeSettings = false;
   document.getElementById('timer').textContent = '0:00';
   document.getElementById('game-area').style.display = '';
   document.getElementById('complete-area').style.display = 'none';
@@ -652,20 +799,23 @@ function doRestart() {
 function renderGrid() {
   const table = document.getElementById('times-grid');
   table.innerHTML = '';
-  const header = document.createElement('tr');
-  header.innerHTML = '<th></th>';
-  for (let b = 2; b <= 12; b++) header.innerHTML += `<th>${b}</th>`;
-  table.appendChild(header);
+  const hrow = document.createElement('tr');
+  hrow.innerHTML = '<th></th>';
+  for (const b of ALL_TABLES)
+    hrow.innerHTML += `<th>${b}</th>`;
+  table.appendChild(hrow);
   let seen = 0;
-  for (let a = 2; a <= 12; a++) {
+  for (const a of ALL_TABLES) {
     const row = document.createElement('tr');
-    row.innerHTML = `<th style="text-align:right;padding-right:6px;color:#888780;font-size:11px;">${a}</th>`;
-    for (let b = 2; b <= 12; b++) {
+    row.innerHTML = `<th style="text-align:right;padding-right:5px;font-size:11px;">${a}</th>`;
+    for (const b of ALL_TABLES) {
       const key = `${a}x${b}`;
       const cs = cellStats[key];
       const td = document.createElement('td');
       td.textContent = a * b;
-      if (retired[key]) {
+      if (!isFactActive(a, b)) {
+        td.className = 'cell-excluded';
+      } else if (retired[key]) {
         td.className = 'cell-retired';
         td.title = `${a}×${b}: ${cs.correct} correct, ${cs.wrong} wrong`;
       } else if (cs.correct === 0 && cs.wrong === 0) {
@@ -683,12 +833,13 @@ function renderGrid() {
   }
   const notSeen = TOTAL - retiredCount - seen;
   const summary = document.getElementById('grid-summary');
+  const practicing = `Practicing ${fmtTables()} · `;
   if (retiredCount === 0 && seen === 0) {
-    summary.innerHTML = 'No questions answered yet — get practicing!';
+    summary.innerHTML = `${practicing}No questions answered yet`;
   } else if (endless) {
-    summary.innerHTML = `<span>${notSeen}</span> not seen · <span>${seen}</span> to train up`;
+    summary.innerHTML = `${practicing}<span>${notSeen}</span> not seen · <span>${seen}</span> to train up`;
   } else {
-    summary.innerHTML = `<span>${notSeen}</span> not seen · <span>${seen}</span> to revisit · <span>${retiredCount}</span> retired`;
+    summary.innerHTML = `${practicing}<span>${notSeen}</span> not seen · <span>${seen}</span> to revisit · <span>${retiredCount}</span> retired`;
   }
 }
 
@@ -707,10 +858,19 @@ document.addEventListener('keydown', e => {
   else nextQuestion();
 });
 
-adjReps(0);
+adjPractice(0); adjReps(0);
+buildTablesGrid();
+initData();
 startTimer();
 nextQuestion();
 updateStats();
+
+function adjPractice(d) {
+  practiceCount = Math.min(5, Math.max(1, practiceCount + d));
+  document.getElementById('practice-val').textContent = practiceCount;
+  document.getElementById('practice-minus').disabled = practiceCount === 1;
+  document.getElementById('practice-plus').disabled = practiceCount === 5;
+}
 </script>
 </body>
 </html>
