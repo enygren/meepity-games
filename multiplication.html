@@ -570,7 +570,7 @@ function submitAnswer() {
         fb.textContent = `🎉 ${stats.streak} in a row!`; fb.className = 'feedback streak';
         launchConfetti('confetti-canvas');
       } else { fb.textContent = '✓ Correct!'; fb.className = 'feedback ok'; }
-      if (!endless && retiredCount >= TOTAL) { showComplete(); return; }
+      if (!endless && retiredCount >= TOTAL) { updateStats(); showComplete(); return; }
     } else {
       // Figure out what still needs to happen
       const practiceLeft = Math.max(0, practiceCount - cs.totalCorrect);
